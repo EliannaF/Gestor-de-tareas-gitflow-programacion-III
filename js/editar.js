@@ -1,4 +1,4 @@
-//Escucha los clics sobre la lista y solo actúa si se pulsó un botón Editar.
+// ACTUALIZAR: cambia el texto de una tarea existente
 document.getElementById("lista").addEventListener("click", function (evento) {
   if (!evento.target.classList.contains("btn-editar")) return;
 
@@ -7,6 +7,12 @@ document.getElementById("lista").addEventListener("click", function (evento) {
 
   const nuevoTexto = prompt("Edita la tarea:", tarea.texto);
   if (nuevoTexto === null) return;
+
+  const error = validarTexto(nuevoTexto.trim());
+  if (error) {
+    alert(error);
+    return;
+  }
 
   tarea.texto = nuevoTexto.trim();
   guardar();
